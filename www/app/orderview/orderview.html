@@ -1,0 +1,140 @@
+<ion-view view-title="Order">
+    <ion-content class="orders">
+        <div class="order-info">
+
+            <!-- Order Information -->
+            <div class="row">
+                <div class="col">
+                    <h4>Order Information</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">Order #</div>
+                <div class="col">{{vm.getOrder.increment_id}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Order Date</div>
+                <div class="col">{{vm.getOrder.created_at}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Order Status</div>
+                <div class="col">{{vm.getOrder.status}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Purchased From</div>
+                <div class="col">{{vm.getOrder.store_name}}</div>
+            </div>
+        </div>
+        <!-- Order Information -->
+
+        <!-- Account Information -->
+        <div class="acc-info">
+            <div class="row">
+                <div class="col">
+                    <h4>Account Information</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">Customer Name</div>
+                <div class="col">{{vm.getOrder.customername}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Email</div>
+                <div class="col">{{vm.getOrder.customer_email}}</div>
+            </div>
+        </div>
+        <!-- Account Information -->
+
+        <!-- Address Information -->
+        <div class="addr-info">
+            <div class="row">
+                <div class="col">
+                    <h4>Address Information</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Billing Address</h5>
+                    <div>{{vm.getOrder.billing_address.firstname}} {{vm.getOrder.billing_address.lastname}}</div>
+                    <div>{{vm.getOrder.billing_address.company}}</div>
+                    <div ng-repeat="street in vm.getOrder.billing_address.street">{{street}}</div>
+                    <div>{{vm.getOrder.billing_address.city}}, {{vm.getOrder.billing_address.region}}, {{vm.getOrder.billing_address.postcode}}
+                    </div>
+                    <div>Telephone: {{vm.getOrder.billing_address.telephone}} </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Shipping Address</h5>
+                    <div>{{vm.getOrder.extension_attributes.shipping_assignments[0].shipping.address.firstname}} {{vm.getOrder.extension_attributes.shipping_assignments[0].shipping.address.lastname}}</div>
+                    <div>{{vm.getOrder.extension_attributes.shipping_assignments[0].shipping.address.company}}</div>
+                    <div ng-repeat="street in vm.getOrder.extension_attributes.shipping_assignments[0].shipping.address.street">{{street}}</div>
+                    <div>{{vm.getOrder.extension_attributes.shipping_assignments[0].shipping.address.city}}, {{vm.getOrder.extension_attributes.shipping_assignments[0].shipping.address.region}},
+                        {{vm.getOrder.extension_attributes.shipping_assignments[0].shipping.address.postcode}} </div>
+                    <div>Telephone: {{vm.getOrder.extension_attributes.shipping_assignments[0].shipping.address.telephone}} </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Address Information -->
+
+        <!-- Item Ordered Information -->
+        <div class="item-ordered">
+            <div class="row">
+                <div class="col">
+                    <h4>Item Ordered</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Item Ordered Information -->
+
+        <!-- Order Total -->
+        <div class="order-total">
+            <div class="row">
+                <div class="col">
+                    <h4>Order Total</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">Subtotal</div>
+                <div class="col">{{vm.getOrder.order_currency_code}} {{vm.getOrder.subtotal}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Shipping &amp; Handling</div>
+                <div class="col">{{vm.getOrder.order_currency_code}} {{vm.getOrder.shipping_amount}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Total Tax</div>
+                <div class="col">{{vm.getOrder.order_currency_code}} {{vm.getOrder.base_tax_amount}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Grand Total</div>
+                <div class="col">{{vm.getOrder.order_currency_code}} {{vm.getOrder.grand_total}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Total Paid</div>
+                <div class="col">{{vm.getOrder.order_currency_code}} {{vm.getOrder.total_paid}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Total Refunded</div>
+                <div class="col">{{vm.getOrder.order_currency_code}} {{vm.getOrder.base_discount_amount}}</div>
+            </div>
+            <div class="row">
+                <div class="col">Total Due</div>
+                <div class="col">{{vm.getOrder.order_currency_code}} {{vm.getOrder.total_due}}</div>
+            </div>
+        </div>
+        <!-- Order Total -->
+
+        <div class="order_status row">
+                <div class="order-price col">
+                    <div style="float:right">Status :</div>
+                </div>
+                <select class="status-filter col" ng-model="vm.filterOptions" ng-change="vm.Searchfilter()">
+                    <option value="all">All</option>
+                    <option value="processing">Processing</option>
+                    <option value="pending">Pending</option>
+                </select>
+            </div>
+    </ion-content>
+</ion-view>

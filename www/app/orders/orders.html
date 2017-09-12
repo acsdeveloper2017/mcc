@@ -1,0 +1,29 @@
+<ion-view view-title="Customer Orders">
+    <ion-content class="orders">
+        <div class="order_status row">
+            <div class="order-price col">
+                <div style="float:right">Status :</div>
+            </div>
+            <select class="status-filter col" ng-model="vm.filterOptions" ng-change="vm.Searchfilter()">
+                <option value="all">All</option>
+                <option value="processing">Processing</option>
+                <option value="pending">Pending</option>
+            </select>
+        </div>
+        <ion-list class="orders-list" ng-show="!vm.isOrdersEmpty">
+            <ion-item ng-repeat="orders in vm.OrdersList track by $index">
+                <!-- <div class="customer-name">{{orders.customer_firstname}} {{orders.customer_lastname}}</div> -->
+                <div class="row" ng-click="vm.orderview(orders)">
+                    <div class="customer-name col">{{orders.customer_firstname.toUpperCase() || orders.billing_address.firstname.toUpperCase() }} {{orders.customer_lastname.toUpperCase()
+                        || orders.billing_address.lastname.toUpperCase()}}</div>
+                </div>
+                <div class="row">
+                    <div class="order-price col" ng-click="vm.orderview(orders)">Grand Total : {{orders.order_currency_code}} {{orders.base_grand_total}}</div>
+                    <div class="call-customer col"><a ng-href="tel:{{orders.billing_address.telephone}}" style="text-decoration: none;float:right;"><i class="icon ion-android-call"></i> {{orders.billing_address.telephone}}</a></div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <!-- <ion-infinite-scroll ng-if="!vm.hasLastPageLoaded" on-infinite="vm.loadMore()" distance="1%">
+        </ion-infinite-scroll> -->
+    </ion-content>
+</ion-view>
